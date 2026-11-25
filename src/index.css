@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+@keyframes track-plane-drive {
+  0% {
+    left: 2rem;
+    transform: translateY(0) rotate(-6deg);
+  }
+  45% {
+    left: calc(100% - 6rem);
+    transform: translateY(-22px) rotate(3deg);
+  }
+  50% {
+    left: calc(100% - 6rem);
+    transform: translateY(-22px) rotate(3deg);
+  }
+  100% {
+    left: 2rem;
+    transform: translateY(0) rotate(-6deg);
+  }
+}
+
+@keyframes track-route-fill {
+  0%,
+  100% {
+    width: 10%;
+  }
+  50% {
+    width: 82%;
+  }
+}
+
+.track-plane {
+  animation: track-plane-drive 7s ease-in-out infinite;
+}
+
+.track-route-progress {
+  animation: track-route-fill 7s ease-in-out infinite;
+}
