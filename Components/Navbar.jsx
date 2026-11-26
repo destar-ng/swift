@@ -1,35 +1,97 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Menu, X } from "lucide-react";
 
-function Navbar(){
-    const Navigate = useNavigate();
-    return (
-        <nav className="fixed top-0 w-full bg-black/75 backdrop-blur-xl z-20">
-            <div className="max-w-7xl mx-auto px-4 sm:px-8 ">
-                <div className="text-2xl text-white flex flex-col lg:flex-row items-center justify-between gap-4 py-4 lg:h-15 lg:py-0">
-                    <div className="text-xl font-bold text-blue-400 cursor-pointer shrink-0">SWIFT
+const links = [
+  { to: "/", label: "Home" },
+  { to: "/aboutus", label: "About Us" },
+  { to: "/trackship", label: "Track Shipment" },
+  { to: "/contactsu", label: "Contact & Support" },
+];
 
-                    </div>
-                    {/* <img src={swiftlogo} alt="Swift Logo" className="h-10 w-auto" /> */}
-                
+function Navbar() {
+  const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-                <ul className="w-full lg:w-auto">
-                    <li className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 lg:gap-10 text-gray-600">
-                
-                        <Link to="/" className="text-base sm:text-lg text-white whitespace-nowrap">Home</Link>
-                        <Link to="/aboutus" className="text-base sm:text-lg text-white whitespace-nowrap">About Us</Link>
-                        <Link to= "/trackship" className="text-base sm:text-lg text-white whitespace-nowrap">Track Shipment</Link>
-                        <Link to= "/contactsu" className="text-base sm:text-lg text-white whitespace-nowrap">Contact & Support</Link>
-                    </li>
-                </ul>
+  const closeMenu = () => setIsMenuOpen(false);
 
-                <div className="w-full sm:w-auto shrink-0">
-                    <button onClick={() => Navigate("/trackship")} className="flex items-center justify-center w-full sm:w-auto bg-blue-600 text-base sm:text-lg text-white px-5 sm:px-7 py-2 rounded-lg hover:bg-blue-700 transition duration-300 whitespace-nowrap">Track Shipment</button>
-                </div>
-                </div>
+  return (
+    <nav className="fixed top-0 z-20 w-full bg-black/75 backdrop-blur-xl">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-8">
+        <div className="flex h-16 items-center justify-between gap-4">
+          <Link
+            to="/"
+            onClick={closeMenu}
+            className="shrink-0 text-xl font-bold text-blue-400"
+          >
+            SWIFT
+          </Link>
 
-            </div>
-        </nav>
+          <div className="hidden items-center gap-8 lg:flex">
+            <ul className="flex items-center gap-7 xl:gap-10">
+              {links.map(({ to, label }) => (
+                <li key={to}>
+                  <Link
+                    to={to}
+                    className="whitespace-nowrap text-base text-white transition-colors hover:text-blue-400"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <button
+              type="button"
+              onClick={() => navigate("/trackship")}
+              className="whitespace-nowrap rounded-lg bg-blue-600 px-5 py-2 text-base text-white transition-colors hover:bg-blue-700"
+            >
+              Track Shipment
+            </button>
+          </div>
 
-    )
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg text-white transition-colors hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 lg:hidden"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          >
+            {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
+          </button>
+        </div>
+
+        <div
+          id="mobile-navigation"
+          className={`${isMenuOpen ? "block" : "hidden"} absolute inset-x-4 top-full rounded-b-xl border border-white/10 bg-slate-950/95 p-4 shadow-xl backdrop-blur-xl sm:inset-x-8 lg:hidden`}
+        >
+          <ul className="flex flex-col">
+            {links.map(({ to, label }) => (
+              <li key={to}>
+                <Link
+                  to={to}
+                  onClick={closeMenu}
+                  className="block rounded-lg px-4 py-3 text-base text-white transition-colors hover:bg-white/10 hover:text-blue-400"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <button
+            type="button"
+            onClick={() => {
+              closeMenu();
+              navigate("/trackship");
+            }}
+            className="mt-3 flex min-h-11 w-full items-center justify-center rounded-lg bg-blue-600 px-5 py-2 text-base text-white transition-colors hover:bg-blue-700"
+          >
+            Track Shipment
+          </button>
+        </div>
+      </div>
+    </nav>
+  );
 }
-export default Navbar
+
+export default Navbar;
