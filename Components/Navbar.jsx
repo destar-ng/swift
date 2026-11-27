@@ -40,13 +40,7 @@ function Navbar() {
                 </li>
               ))}
             </ul>
-            <button
-              type="button"
-              onClick={() => navigate("/trackship")}
-              className="whitespace-nowrap rounded-lg bg-blue-600 px-5 py-2 text-base text-white transition-colors hover:bg-blue-700"
-            >
-              Track Shipment
-            </button>
+
           </div>
 
           <button
