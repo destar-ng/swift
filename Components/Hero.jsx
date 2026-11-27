@@ -46,10 +46,10 @@ function Hero() {
         </p>
 
         <div className="flex flex-col gap-4 sm:flex-row">
-          <button onClick={() => Navigate("/track-shipment")} className="bg-blue-600 px-8 py-3 font-semibold text-white transition hover:bg-blue-700">
+          <button onClick={() => Navigate("/trackship")} className="bg-blue-600 px-8 py-3 font-semibold text-white transition hover:bg-blue-700">
             Track Shipment
           </button>
-          <button onClick={() => Navigate("/contactus")} className="border border-white px-8 py-3 font-semibold text-white transition hover:bg-white hover:text-black">
+          <button onClick={() => Navigate("/contactsu")} className="border border-white px-8 py-3 font-semibold text-white transition hover:bg-white hover:text-black">
             Our Services
           </button>
         </div>
