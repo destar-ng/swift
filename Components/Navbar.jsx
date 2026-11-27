@@ -72,16 +72,7 @@ function Navbar() {
               </li>
             ))}
           </ul>
-          <button
-            type="button"
-            onClick={() => {
-              closeMenu();
-              navigate("/trackship");
-            }}
-            className="mt-3 flex min-h-11 w-full items-center justify-center rounded-lg bg-blue-600 px-5 py-2 text-base text-white transition-colors hover:bg-blue-700"
-          >
-            Track Shipment
-          </button>
+
         </div>
       </div>
     </nav>
