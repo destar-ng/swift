@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import plan1 from "../src/assets/plan1.jpg";
 import hero2 from "../src/assets/hero2.jpg";
 import hero3 from "../src/assets/hero3.jpg";
@@ -46,12 +47,18 @@ function Hero() {
         </p>
 
         <div className="flex flex-col gap-4 sm:flex-row">
-          <button onClick={() => Navigate("/trackship")} className="bg-blue-600 px-8 py-3 font-semibold text-white transition hover:bg-blue-700">
+          <Link
+            to="/trackship"
+            className="bg-blue-600 px-8 py-3 text-center font-semibold text-white transition hover:bg-blue-700"
+          >
             Track Shipment
-          </button>
-          <button onClick={() => Navigate("/contactsu")} className="border border-white px-8 py-3 font-semibold text-white transition hover:bg-white hover:text-black">
+          </Link>
+          <Link
+            to="/contactsu"
+            className="border border-white px-8 py-3 text-center font-semibold text-white transition hover:bg-white hover:text-black"
+          >
             Our Services
-          </button>
+          </Link>
         </div>
       </div>
 
